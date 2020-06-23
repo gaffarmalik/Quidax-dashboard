@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+
+/* Universal font family*/
+*{ font-family: 'Ubuntu', sans-serif; box-sizing: border-box;}
+
+body, html{
+    margin:0px;
+    padding:0px;
+}
+
+/*
+
+ NAVBAR STYLING
+i.   Brand
+ii.  Search
+iii. Others
+
+*/
+nav.navbar{
+    height:auto;
+    padding:15px 40px;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.05);
+}
+.navbar-inner{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-around;
+}
+
+.brand, .search, .others{
+    line-height: 3em;
+    padding:5px auto;
+    font-size: 14px;
+}
+
+
+
+
+.brand{width:27%;}
+.brand-logo{
+    float:left;
+    width:50px;
+    height:50px;
+}
+
+.brand-text{
+    float:left;
+    margin-left:3%;
+}
+
+.brand-text h4{
+    line-height:0px;
+    margin-block-end: 1px;        
+}
+
+.brand-text span{
+    color: #AAAAAA;
+    font-size: 12px;
+}
+
+
+
+.search{width:49%;}
+.search button{
+    height:40px;
+    margin:2% 0px;
+}
+
+.search input{
+    border: 1px solid #DDDDDD;
+    background: #FFFFFF;
+    height:40px;
+    box-sizing: border-box; /*clear default padding*/
+    margin:2% 0px;
+    width:80%;
+    float: left;
+    padding: 0px;
+}
+
+.search button{
+    /* submit button */
+    background: url("../images/icon-button.png");
+    height:40px;
+    width:40px;
+    border: 0px;
+    background-size: cover;
+}
+
+
+
+
+
+.others{width:23%;}
+.others ul{
+    list-style-type: none;
+    float: right;
+    margin-right:50px;
+}
+
+.others ul li{
+    display: inline;
+    padding: 10px;
+    
+}
+
+.others ul li{
+    height:30px;
+    width:30px;
+    
+}
+
+li.user-display{
+    height:40px;
+    width:40px;
+    padding: 0px;
+    position: absolute;
+    top:10px;
+    padding:0px;
+
+    
+}
+
+
+
+
+.body{
+    width:100%;
+    height:700px;
+    /* background: #979797; */
+    position: relative;
+}
+
+.body aside.sidebar{
+    float:left;
+    width:280px;
+    height:100%;
+    /* background:black; */
+    box-shadow: 19px 20px 40px rgba(0, 0, 0, 0.1);
+    font-size:14px;
+}
+.body aside.content{
+    float:left;
+    width:74%;
+    height:100%;
+    /* background:white; */
+}
+
+
+.sidebar ul{
+    list-style-type: none;
+}
+
+.sidebar ul.menu{
+border-bottom: 1px solid #EEEEEE;
+padding-bottom:15px;
+}
+li.item{
+line-height:2em;
+
+}
+
+li.menu-header{
+    margin:20px auto;
+    font-weight: bolder;
+
+}
+.active{
+    color:#65C100;
+
+}
+
+.section-header{
+padding:10px 0px;
+text-transform: uppercase;
+font-size: 14px;
+letter-spacing: 3px;
+font-weight: bold;
+border-bottom: 1px solid #EEEEEE;
+}
+
+.container{
+    width:100%;
+    background:red;
+    min-height:160px;
+    position: relative;
+}
+
+.section{
+    margin:30px 35px;
+    min-height:300px;
+    position: relative;
+}
+.divider{
+    height:20px;
+    margin:10px auto;
+}
+
+
+
+/*Carousel Design*/
+.carousel {
+    background: #EEE;
+  }
+  
+  .carousel-cell {
+    width: 320;
+     height: auto ;
+    margin-right: 10px;
+    background: #8C8;
+    counter-increment: gallery-cell;
+  }
+  
+  .carousel-cell.is-selected {
+    background: #ED2;
+  }
+  
+
+  /* flickty Carousel styling */
+ 
+  .flickity-button{
+      /* Overwrite Flickity style rules */
+      border-radius: 0px !important;
+      height:100% !important;
+      right:0px !important;
+  }
+
+button.flickity-button.flickity-prev-next-button.next{
+      right:0px;
+  }
+button.flickity-button.flickity-prev-next-button.previous{
+      left:0px;
+  }
+
+ li.dot.is-selected{
+    background: #64C000;
+  }
+
+
+
+
+
+
+
+.card{
+    font-size:14px;
+width:33%;
+height:160px;
+background:yellow;
+float: left;
+}
+
+.card-image{
+width:30%;
+height:100%;
+float:left;
+}
+
+.card-image img{
+    height:100%;
+    width:100%;
+}
+.card-text{
+    float: left;
+    width:70%;
+}
