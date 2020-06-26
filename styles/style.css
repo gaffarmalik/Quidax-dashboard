@@ -7,6 +7,45 @@ body, html{
     margin:0px;
     padding:0px;
 }
+a{text-decoration:none; color:black}
+ul{list-style-type: none;}
+.like{
+
+    margin:2px 1px 10px 10px;
+    margin-left:10px;
+}
+
+.ratings{
+    border-right:1px solid #DDDDDD;
+    padding-right:10px;
+}
+
+
+.sidebar-notification{
+    background: #65C100;
+    border-radius: 20px;
+    padding:5px 8px;
+    
+    color:white !important;
+    font-size: 12px;
+    line-height: 1em;
+}
+    .right{
+        float:right;
+    }
+    .like-count{
+        margin:0px;
+        margin-left:10px;
+    }
+
+    .stars{
+        float:left;
+    }
+    .rating{
+        font-size: 12px;
+    }
+    .left{float:left;}
+
 
 /*
 
@@ -14,12 +53,19 @@ body, html{
 i.   Brand
 ii.  Search
 iii. Others
+iv.  Search Results
 
 */
 nav.navbar{
     height:auto;
     padding:15px 40px;
     box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.05);
+    width:100%;
+    position: fixed;     /*Fixed Navbar Position*/
+    background:white;
+    z-index:1;
+
+
 }
 .navbar-inner{
     display: flex;
@@ -29,6 +75,7 @@ nav.navbar{
 }
 
 .brand, .search, .others{
+    position: relative;
     line-height: 3em;
     padding:5px auto;
     font-size: 14px;
@@ -36,9 +83,13 @@ nav.navbar{
 
 
 
-
+/* BRAND LOGO/ TEXT */
 .brand{width:27%;}
-.brand-logo{
+.mobile-toggle{
+    display: none;
+    cursor: pointer;
+}
+.brand-logo, .mobile-toggle{
     float:left;
     width:50px;
     height:50px;
@@ -59,15 +110,37 @@ nav.navbar{
     font-size: 12px;
 }
 
-
-
-.search{width:49%;}
-.search button{
-    height:40px;
-    margin:2% 0px;
+.search-mobile{
+    display: none;
+    width:100%;
 }
 
-.search input{
+
+
+/* SEARCH FORM AND SUBMIT */
+.search{width:49%;}
+.search button, .search-mobile button{
+    height:40px;
+    margin:2% 0px;
+    background: url("../images/icon-button.png");
+    height:40px;
+    width:40px;
+    border: 0px;
+    background-size: cover;
+}
+
+.search-mobile p.toggle{
+float:left;
+width: 20%;
+    /* padding: 10px; */
+}
+
+.search-mobile form{
+    float:left;
+    width: 80%;
+    }
+
+.search input, .search-mobile input{
     border: 1px solid #DDDDDD;
     background: #FFFFFF;
     height:40px;
@@ -76,26 +149,64 @@ nav.navbar{
     width:80%;
     float: left;
     padding: 0px;
+
 }
 
-.search button{
-    /* submit button */
-    background: url("../images/icon-button.png");
-    height:40px;
-    width:40px;
-    border: 0px;
-    background-size: cover;
+.search input:focus, .search-mobile input:focus{
+    outline: none;
+    
 }
 
 
 
+#result-mobile{
+    background: white;
+    padding:5px 10px;
+    position: absolute;
+    z-index: 3;
+    top:100%;
+    width:100%;
+    left:0px;
+    background-color: white;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.05);
+    border: 1px solid #EEEEEE;
+    /* display: none; */
+    display: none;
+}
 
 
+#result{
+    background: white;
+    padding:5px 10px;
+    position: absolute;
+    z-index: 3;
+    top:48px;
+    width:86.5%;
+    background-color: white;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.05);
+    border: 1px solid #EEEEEE;
+    /* display: none; */
+    display: none;
+}
+
+.result li, .result-mobile li{
+    text-overflow: ellipsis;
+    line-height: 3em;
+
+}
+.result ul, .result-mobile ul{
+    margin-inline-start:0px;
+}
+
+
+
+/* OTHER NAVBAR BUTTONS: Notif, User-display, etc */
 .others{width:23%;}
 .others ul{
     list-style-type: none;
     float: right;
-    margin-right:50px;
+    margin:9px;
+    margin-right:55px;
 }
 
 .others ul li{
@@ -111,41 +222,90 @@ nav.navbar{
 }
 
 li.user-display{
-    height:40px;
-    width:40px;
+    height:30px;
+    width:30px;
     padding: 0px;
     position: absolute;
-    top:10px;
+    top:-8px;
     padding:0px;
-
+    
+}
+li.user-display img{
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.05);
+    width:50px;
     
 }
 
 
+.toggle-details{
+position: absolute;
+top:2px;
+right:10px;
+display: none;
+}
 
 
+
+
+/*
+
+ CONTENT STYLING
+i.   Aside Nav (.aside)
+ii.  Main Content(.content)
+iii. Cards
+iv.  Carousel
+
+*/
+
+/* MAIN CONTENTS: Carousel, sections, etc */
 .body{
     width:100%;
     height:700px;
-    /* background: #979797; */
+    position: relative;
+    padding-top: 100px;
+}
+
+
+.body aside.content{
+    float:left;
+    width:75%;
+    position: absolute;
+    left:280px;
+}
+
+
+.container{
+    width:100%;
+    min-height:160px;
     position: relative;
 }
 
+.section{
+    margin:10px 35px;
+    min-height:350px;
+    position: relative;
+    overflow:hidden;
+}
+.divider{
+    height:20px;
+    margin:10px auto;
+}
+
+
+
+
+/* SIDEBAR: Side Navigation */
 .body aside.sidebar{
     float:left;
     width:280px;
     height:100%;
-    /* background:black; */
     box-shadow: 19px 20px 40px rgba(0, 0, 0, 0.1);
-    font-size:14px;
+    font-size:12px;
+    position: fixed;
+    background:white;
+    z-index: 0;
+    transition: 1s ease-in;
 }
-.body aside.content{
-    float:left;
-    width:74%;
-    height:100%;
-    /* background:white; */
-}
-
 
 .sidebar ul{
     list-style-type: none;
@@ -154,11 +314,22 @@ li.user-display{
 .sidebar ul.menu{
 border-bottom: 1px solid #EEEEEE;
 padding-bottom:15px;
+
 }
 li.item{
 line-height:2em;
-
 }
+
+
+li.item span{
+    margin-right:20px;
+    border-radius: 20px;
+    padding:5px 8px;
+    
+    color: #AAAAAA;
+        font-size: 12px;
+    line-height: 1em;
+    }
 
 li.menu-header{
     margin:20px auto;
@@ -178,53 +349,49 @@ letter-spacing: 3px;
 font-weight: bold;
 border-bottom: 1px solid #EEEEEE;
 }
-
-.container{
-    width:100%;
-    background:red;
-    min-height:160px;
-    position: relative;
-}
-
-.section{
-    margin:30px 35px;
-    min-height:300px;
-    position: relative;
-}
-.divider{
-    height:20px;
-    margin:10px auto;
+.out{
+    color:red !important;
 }
 
 
 
-/*Carousel Design*/
+
+
+
+
+
+/*CAROUSEL OVERRIDES: flickty Carousel styling*/
 .carousel {
-    background: #EEE;
+    background: white;
   }
   
   .carousel-cell {
     width: 320;
-     height: auto ;
+     height: 300px ;
     margin-right: 10px;
-    background: #8C8;
+    /* background: #8C8; Default*/
+    background-color: white;
+    box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.15);
+
     counter-increment: gallery-cell;
   }
   
   .carousel-cell.is-selected {
-    background: #ED2;
+    box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.15);
   }
   
 
-  /* flickty Carousel styling */
- 
+  .dot.is-selected{
+    background: #64C000 !important;
+  }
   .flickity-button{
-      /* Overwrite Flickity style rules */
       border-radius: 0px !important;
       height:100% !important;
       right:0px !important;
   }
-
+  .flickity-viewport{
+      height:320px !important;
+  }
 button.flickity-button.flickity-prev-next-button.next{
       right:0px;
   }
@@ -233,25 +400,39 @@ button.flickity-button.flickity-prev-next-button.previous{
   }
 
  li.dot.is-selected{
-    background: #64C000;
-  }
-
-
-
-
-
-
-
-.card{
-    font-size:14px;
-width:33%;
-height:160px;
-background:yellow;
-float: left;
+    box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.15);
+}
+.flickity-page-dots{
+    bottom:0px !important ;
+}
+.flickity-enabled.is-draggable{
+    height:350px;
 }
 
-.card-image{
+
+
+
+
+/* BOOK CARDS */
+.card{
+font-size:14px;
 width:30%;
+height:170px;
+float: left;
+margin-bottom:20px;
+position: relative;
+margin-right:15px;
+cursor: pointer;
+margin: 10px 8px;
+}
+
+
+.card:hover{
+    box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.15);
+
+}
+.card-image{
+width:35%;
 height:100%;
 float:left;
 }
@@ -260,7 +441,204 @@ float:left;
     height:100%;
     width:100%;
 }
-.card-text{
+.card-body{
     float: left;
-    width:70%;
+    width:65%;
+    padding: 1px 10px;
 }
+
+p.status{
+    font-size: 12px;
+   color: #65C100;
+}
+
+p.title{
+    font-size: 14px;
+   font-weight:bold;
+   margin-block-end:2px; 
+
+   
+}
+
+
+p.author{
+    font-size: 14px;
+   margin-block-start:2px;
+   margin-block-end: 2px;
+   font-size: 12px;
+
+}
+
+p.genre{
+   font-size: 14px;
+   margin-block-start:2px;
+   margin-block-end: 2px;
+   font-size: 12px;
+
+}
+
+.left{
+    float:left;
+}
+.card-action{
+    width:70%;
+    padding: 1px 10px;
+    position: absolute;
+    top:70%;
+    left:35%;
+    font-size: 12px;
+}
+
+.cell-hover{
+    height:120%;
+    width:100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.607988) 0%, #000000 79.7%);    top:0px;
+    position: absolute;
+    color:white;
+    display: none;
+    color: white !important;
+    padding:50% 5% 5% 5%;
+    
+}
+
+.cell-hover >p.title{
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+.cell-hover >p.author{
+ 
+ line-height: 15px;  
+  font-size: 12px;
+  margin-block-end: 10px;
+  
+}
+
+
+
+
+
+/* CAROUSEL HOVER EFFECT */
+.carousel-cell:hover > .cell-hover{
+display: block;
+}
+
+.carousel-cell:hover > p.toggle-details{
+    display: none;
+}
+
+.result ul, .result-mobile ul{
+    margin-inline-start:0px;
+}
+
+
+.sidebar-head{
+    display: none;
+}
+#search-glass{
+    display: none;
+}
+
+
+
+
+
+/* SCREEN RESPONSIVE BREAKPOINTS
+I. IPAD Screen
+II. Iphone 6/7/8 Screen
+*/
+@media screen and (max-width: 768px) {
+/*IPAD SCREEN*/
+.toggle-details{
+    display: block;
+}
+#search-glass{
+    display: inline;
+}
+.card{
+    width:45%;
+}
+.others ul{
+    padding:0px;
+    margin: 10px 1px;
+    width:90%;
+}
+
+
+}
+
+
+
+
+@media screen and (max-width: 420px) {
+    /* IPHONE 6/7/8 SCREEN */
+    .mobile-toggle{
+        display: block;
+        width:20px;
+        height:20px;
+        margin:15px 20px 25px;
+    }
+    .card{
+        width:100%;
+    }
+    .sidebar{
+        display: none;
+        top:0px;
+        background:#F9F9FB !important;
+    }
+
+    .body aside.content{
+        width:100% !important;
+        left:0px !important;
+    }
+    .brand-text{
+        display: none;
+    }
+    .search{
+        display: none;
+    }
+    .others{
+        width:60%;
+    }
+    .brand{
+        width:40%;
+    }
+    .brand-mobile{
+        width:100%;
+    }
+    .brand-text-mobile{
+        float:left;
+        margin-left:3%;
+    }
+    nav.navbar{
+    padding:15px ;
+    }
+    .content > div:nth-child(1) > p{
+        /*Clear off first paragraph on Mobile*/
+        display: none;
+
+    }
+    .divider{
+        margin:0px;
+        height:0px;
+    }
+   
+    .sidebar-header{
+        min-height:50px; 
+        /* padding:40px 10px; */
+        margin:30px 30px 50px 30px;
+    }
+    .sidebar-brand-text{
+        float:left;
+    margin-left:3%;
+    }
+
+    .sidebar-head{
+        display: block;
+    }
+    .sidebar-arrow-box{
+        min-height: 50px;
+        margin:20px 10px;
+        
+    }
+    }

@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quidax UI Challenge</title>
+    <title>Quidax UI Challenge - Abdulgaffar Abdulmalik</title>
     <link href="styles/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <link rel="stylesheet" href="styles/flickity.css">
 
 </head>
 
@@ -14,25 +14,52 @@
 
     <!-- NAVIGATION BAR STARTS HERE -->
     <nav class="navbar">
-        <div class="navbar-inner">
+        <div class="search-mobile" id="search-mobile">
+            <p class="toggle"> <img src="images/arrow-left.png" onclick="closeTouch()" />
+            <form method="" action="" style="float:left">
+                <input type="text" placeholder="Search books, genres, authors, etc" id="search-input"
+                    onkeydown="inputSearch(this)" />
+                <button type="submit"></button>
+            </form>
+            <div class="result-mobile" id="result-mobile">
+                <ul>
+                    <li>Result 1</li>
+
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="navbar-inner" id="navbar-inner">
             <div class="brand">
-                <img src="images/logo.png" class="brand-logo" />
+                <img src="images/hamburger.svg" alt="Toggle" class="mobile-toggle" onclick="toggleSidebar()" />
+                <a href=""> <img src="images/logo.png" class="brand-logo" /></a>
                 <div class="brand-text">
                     <h4>Quidax Book Club</h4>
                     <span>Admin</span>
                 </div>
             </div>
-            <div class="search">
+            <div class="search" id="search">
                 <form method="" action="">
-                    <input type="text" placeholder="Search books, genres, authors, etc" />
+                    <input type="text" placeholder="Search books, genres, authors, etc" id="search-input"
+                        onkeydown="inputSearch(this)" />
                     <button type="submit"></button>
                 </form>
+                <div class="result" id="result">
+                    <!--Search Results Will be shown here-->
+                    <ul>
+                        <li>Result 1</li>
+
+                    </ul>
+                </div>
             </div>
             <div class="others">
                 <ul>
-                    <li> <img src="images/Shape.svg" /></li>
-                    <li> <img src="images/bell.png" /></li>
-                    <li class="user-display"> <img src="images/user-image.png" /></li>
+                    <li><img src="images/search-glass.svg" class="" id="search-glass" onclick="openTouch()" /></li>
+                    <li><a href=""><img src="images/Shape.svg" /></a></li>
+                    <li> <a href=""><img src="images/bell.svg" /></a>
+                        <!--<span class="sidebar-notification" style="top:5px; position:absolute; ">3</span></li> -->
+                    <li class="user-display"><a href=""><img src="images/user-image.png" /></a></li>
 
                 </ul>
             </div>
@@ -47,110 +74,559 @@
     <!-- All CONTENT BODY STARTS HERE -->
     <div class="body">
         <!--SIDEBAR MENU STARTS HERE-->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-head">
+                <div class="sidebar-arrow-box">
+                    <img src="images/back.svg" class="mobile-toggle" style="margin-bottom: 10px;"
+                        onclick="toggleSidebar()" />
+                </div>
+                <div class="sidebar-header">
+                    <img src="images/logo.png" class="brand-logo" />
+                    <div class="sidebar-brand-text">
+                        <h4 style="color:black !important">Quidax Book Club</h4>
+                        <span>Admin</span>
+                    </div>
+                </div>
+            </div>
             <ul class="menu">
                 <li class="menu-header active">Home</li>
-                <li class="item">Profile</li>
-                <li class="item">Notifications</li>
+                <li class="item"><a href="">Profile</a><span class="right sidebar-notification">5</span></li>
+                <li class="item"><a href="">Notifications</a><span class="right">3</span></li>
             </ul>
             <ul class="menu">
                 <li class="menu-header">Explore</li>
-                <li class="item">Books</li>
-                <li class="item">Genres</li>
-                <li class="item">Authors</li>
+                <li class="item"><a href="">Books</a> <span class="right">273</span></li>
+                <li class="item"><a href="">Genres</a> <span class="right">42</span></li>
+                <li class="item"><a href="">Authors</a> <span class="right">106</span></li>
 
             </ul>
             <ul class="menu">
                 <li class="menu-header">My Books</li>
-                <li class="item">Queued</li>
-                <li class="item">Currently Borrowed</li>
-                <li class="item">Favourites</li>
-                <li class="item">History</li>
+                <li class="item"><a href="">Queued</a> <span class="right">3</span></li>
+                <li class="item"><a href="">Currently Borrowed</a> <span class="right">0</span></li>
+                <li class="item"><a href="">Favourites</a> <span class="right">19</span></li>
+                <li class="item"><a href="">History</a> <span class="right"></span></li>
+
+            </ul>
+            <ul class="menu">
+                <li class="menu-header">Admin</li>
+                <li class="item"><a href="">Book Request</a> <span class="right sidebar-notification">2</span></li>
+                <li class="item"><a href="">Members</a> <span class="right">34</span></li>
+                <li class="item"><a href="">Library Settings</a> <span class="right"></span></li>
 
             </ul>
         </aside>
         <!--SIDEBAR MENU ENDS HERE-->
 
+
+
+
         <!--BOOK LISTING STARTS HERE-->
         <aside class="content">
+
             <div class="section">
                 <p class="section-header"> FEATURED BOOKS</p>
-                <div class="container">
-                    <div class="carousel" data-flickity>
-                        <div class="carousel-cell">
-                            <img src="images/effective engineer(1).png"/>
+                <!-- <div class="container"> -->
+                <div class="carousel" data-flickity='{ "cellAlign": "left", "contain": true }'>
+                    <div class="carousel-cell" id="carousel-cell">
+                        <p class="toggle-details "><img src="images/details-toggle.png"></p>
+
+                        <div class="cell-hover" id="cell-hover">
+                            <p class="toggle-details "><img src="images/close-details.svg"></p>
+
+                            <p class="status ">Available</p>
+                            <p class="title">The Effective Engineer</p>
+                            <p class="author">Edmond Lau -2009</p>
+                            <p class="genre"><b>Genre:</b> Motivational<br><b>Labels:</b> Creative, Self help </p>
+                            <p class="rating left"><b> Ratings:</b> 4.0<br></br>
+                                <img src="images/Group 3.png" />
+                                <!--Star Count image-->
+                            </p>
+                            <p class="left">
+                                <span>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/people-white.svg"></span>
+                                &nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp; <span><img src="images/like-white.svg"></span>
+                                <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="like">31 &nbsp; &nbsp; 29</span>
+
+                            </p>
 
                         </div>
-                        <div class="carousel-cell">
-                            <img src="images/effective python.png"/>
+                        <img src="images/effective python.png" />
 
-                        </div>
-                        <div class="carousel-cell">
-                            <img src="images/big magic.png"/>
+                    </div>
 
-                        </div>
-                        <div class="carousel-cell">
-                            <img src="images/built to last.png"/>
+                    <div class="carousel-cell">
+                        <p class="toggle-details "><img src="images/details-toggle.png"></p>
 
-                        </div>
-                        <div class="carousel-cell">
-                            <img src="images/the lean startup.png"/>
+                        <div class="cell-hover">
+                            <p class="toggle-details "><img src="images/close-details.svg"></p>
 
+                            <p class="status ">Available</p>
+                            <p class="title">The Effective Engineer</p>
+                            <p class="author">Edmond Lau -2009</p>
+                            <p class="genre"><b>Genre:</b> Motivational<br><b>Labels:</b> Creative, Self help </p>
+                            <p class="rating left"><b> Ratings:</b> 4.0<br></br>
+                                <img src="images/Group 3.png" />
+                                <!--Star Count image-->
+                            </p>
+                            <p class="left">
+                                <span>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/people-white.svg"></span>
+                                &nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp; <span><img src="images/like-white.svg"></span>
+                                <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="like">31 &nbsp; &nbsp; 29</span>
+
+                            </p>
                         </div>
-                     
-                      </div>             
-                  </div>
+                        <img src="images/effective python.png" />
+
+                    </div>
+
+                    <div class="carousel-cell">
+                        <p class="toggle-details "><img src="images/details-toggle.png"></p>
+
+                        <div class="cell-hover">
+                            <p class="toggle-details "><img src="images/close-details.svg"></p>
+
+                            <p class="status ">Available</p>
+                            <p class="title">The Effective Engineer</p>
+                            <p class="author">Edmond Lau -2009</p>
+                            <p class="genre"><b>Genre:</b> Motivational<br><b>Labels:</b> Creative, Self help </p>
+                            <p class="rating left"><b> Ratings:</b> 4.0<br></br>
+                                <img src="images/Group 3.png" />
+                                <!--Star Count image-->
+                            </p>
+                            <p class="left">
+                                <span>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/people-white.svg"></span>
+                                &nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp; <span><img src="images/like-white.svg"></span>
+                                <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="like">31 &nbsp; &nbsp; 29</span>
+
+                            </p>
+                        </div>
+                        <img src="images/big magic.png" />
+
+                    </div>
+
+                    <div class="carousel-cell">
+                        <p class="toggle-details "><img src="images/details-toggle.png"></p>
+
+                        <div class="cell-hover">
+                            <p class="toggle-details "><img src="images/close-details.svg"></p>
+
+                            <p class="status ">Available</p>
+                            <p class="title">The Effective Engineer</p>
+                            <p class="author">Edmond Lau -2009</p>
+                            <p class="genre"><b>Genre:</b> Motivational<br><b>Labels:</b> Creative, Self help </p>
+                            <p class="rating left"><b> Ratings:</b> 4.0<br></br>
+                                <img src="images/Group 3.png" />
+                                <!--Star Count image-->
+                            </p>
+                            <p class="left">
+                                <span>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/people-white.svg"></span>
+                                &nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp; <span><img src="images/like-white.svg"></span>
+                                <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="like">31 &nbsp; &nbsp; 29</span>
+
+                            </p>
+                        </div>
+                        <img src="images/built to last.png" />
+
+                    </div>
+
+                    <div class="carousel-cell">
+                        <p class="toggle-details "><img src="asset/is/details-toggle.png"></p>
+
+                        <div class="cell-hover">
+                            <p class="toggle-details "><img src="images/close-details.svg"></p>
+
+                            <p class="status ">Available</p>
+                            <p class="title">The Effective Engineer</p>
+                            <p class="author">Edmond Lau -2009</p>
+                            <p class="genre"><b>Genre:</b> Motivational<br><b>Labels:</b> Creative, Self help </p>
+                            <p class="rating left"><b> Ratings:</b> 4.0<br></br>
+                                <img src="images/Group 3.png" />
+                                <!--Star Count image-->
+                            </p>
+                            <p class="left">
+                                <span>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/people-white.svg"></span>
+                                &nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp; <span><img src="images/like-white.svg"></span>
+                                <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="like">31 &nbsp; &nbsp; 29</span>
+
+                            </p>
+                        </div>
+                        <img src="images/the lean startup.png" />
+
+                    </div>
+
+                </div>
+                <!-- </div> -->
 
             </div>
             <div class="divider"></div>
+            <!--RECENTLT ADDED BOOKS SECTION STARTS HERE-->
             <div class="section">
                 <p class="section-header"> RECENTLY ADDED</p>
                 <div class="container">
-                        <div class="card">
-                            <div class="card-image"><img src="images/effective engineer (1).png"></div>
-                            <div class="card-text">hvhvh hhhh jhhh</div>
+                    <div class="card">
+                        <div class="card-image"><img src="images/effective engineer (1).png"></div>
+                        <div class="card-body">
+                            <p class="status ">Available</p>
+                            <p class="title">The Effective Engineer</p>
+                            <p class="author">Edmond Lau -2009</p>
+                            <p class="genre">Motivational</p>
                         </div>
-                        <div class="card">
-                            <div class="card-image"> 
-                                <img src="images/built to last.png"/>
+                        <div class="card-action">
+                            <div class="left ratings">
+                                Ratings: 4.0
+                                <p><img src="images/Group 3.png" width="60px" class="stars" /></p>
                             </div>
-                            <div class="card-text">hvhvh</div>
-                        </div>
-                        <div class="card">
-                            <div class="card-image">           
-                                <img src="images/the lean startup.png"/>
-                            </div>
-                            <div class="card-text">hvhvh</div>
-                        </div>
-                        <div class="card">
-                            <div class="card-image"> 
-                                <img src="images/effective python.png"/>
-                            </div>
-                            <div class="card-text">hvhvh</div>
-                        </div>
+                            <div class="left">
+                                <p class="like">
+                                    <span><img src="images/people.png"></span>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <span><img src="images/like.svg"></span>
+                                </p>
 
-                        <div class="card">
-                            <div class="card-image"> 
-                                <img src="images/big magic.png"/>
-                            </div>
-                            <div class="card-text">
-                                <span>Available</span>
-                                <p>The effective Engineer</p>
-
-
+                                <p class="like">31 &nbsp; &nbsp; 29</p>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-image"><img src="images/built to last.png"></div>
+                        <div class="card-body">
+                            <p class="status out">Borrowed out</p>
+                            <p class="title">Built To Last</p>
+                            <p class="author">Jim Collins, Jerry I. Porras -2001</p>
+                            <p class="genre">Business, Entrepreneurship</p>
+                        </div>
+                        <div class="card-action">
+                            <div class="left ratings">
+                                Ratings: 4.0
+                                <p><img src="images/Group 3.png" width="60px" class="stars" /></p>
+                            </div>
+                            <div class="left">
+                                <p class="like">
+                                    <span><img src="images/people.png"></span>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <span><img src="images/like.svg"></span>
+                                </p>
+
+                                <p class="like">31 &nbsp; &nbsp; 29</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-image"><img src="images/the lean startup.png"></div>
+                        <div class="card-body">
+                            <p class="status">Available</p>
+                            <p class="title">The Lean Startup</p>
+                            <p class="author">Eric Reis -2005</p>
+                            <p class="genre">Motivational</p>
+                        </div>
+                        <div class="card-action">
+                            <div class="left ratings">
+                                Ratings: 4.0
+                                <p><img src="images/Group 3.png" width="60px" class="stars" /></p>
+                            </div>
+                            <div class="left">
+                                <p class="like">
+                                    <span><img src="images/people.png"></span>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <span><img src="images/like.svg"></span>
+                                </p>
+
+                                <p class="like">31 &nbsp; &nbsp; 29</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-image"><img src="images/effective python.png"></div>
+                        <div class="card-body">
+                            <p class="status">Available</p>
+                            <p class="title">The Effective Python</p>
+                            <p class="author">Diomidis Spinellis</p>
+                            <p class="genre">Motivational</p>
+                        </div>
+                        <div class="card-action">
+                            <div class="left ratings">
+                                Ratings: 4.0
+                                <p><img src="images/Group 3.png" width="60px" class="stars" /></p>
+                            </div>
+                            <div class="left">
+                                <p class="like">
+                                    <span><img src="images/people.png"></span>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <span><img src="images/like.svg"></span>
+                                </p>
+
+                                <p class="like">31 &nbsp; &nbsp; 29</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-image"><img src="images/big magic.png"></div>
+                        <div class="card-body">
+                            <p class="status">Available</p>
+                            <p class="title">Big Magic</p>
+                            <p class="author">Elizabeth Gilbert</p>
+                            <p class="genre">Motivational</p>
+                        </div>
+                        <div class="card-action">
+                            <div class="left ratings">
+                                Ratings: 4.0
+                                <p><img src="images/Group 3.png" width="60px" class="stars" /></p>
+                            </div>
+                            <div class="left">
+                                <p class="like">
+                                    <span><img src="images/people.png"></span>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <span><img src="images/like.svg"></span>
+                                </p>
+
+                                <p class="like">31 &nbsp; &nbsp; 29</p>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
+            <!--RECENTLTY ADDED BOOKS SECTION ENDS HERE-->
+
+
             <div class="divider"></div>
 
+
+            <!--ALL BOOKS SECTION STARTS HERE-->
             <div class="section">
                 <p class="section-header"> ALL BOOKS</p>
                 <div class="container">
-                    jbnjh
+                    <div class="card">
+                        <div class="card-image"><img src="images/effective engineer (1).png"></div>
+                        <div class="card-body">
+                            <p class="status ">Available</p>
+                            <p class="title">The Effective Engineer</p>
+                            <p class="author">Edmond Lau -2009</p>
+                            <p class="genre">Motivational</p>
+                        </div>
+                        <div class="card-action">
+                            <div class="left ratings">
+                                Ratings: 4.0
+                                <p><img src="images/Group 3.png" width="60px" class="stars" /></p>
+                            </div>
+                            <div class="left">
+                                <p class="like">
+                                    <span><img src="images/people.png"></span>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <span><img src="images/like.svg"></span>
+                                </p>
+
+                                <p class="like">31 &nbsp; &nbsp; 29</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-image"><img src="images/built to last.png"></div>
+                        <div class="card-body">
+                            <p class="status out">Borrowed out</p>
+                            <p class="title">Built To Last</p>
+                            <p class="author">Jim Collins, Jerry I. Porras -2001</p>
+                            <p class="genre">Business, Entrepreneurship</p>
+                        </div>
+                        <div class="card-action">
+                            <div class="left ratings">
+                                Ratings: 4.0
+                                <p><img src="images/Group 3.png" width="60px" class="stars" /></p>
+                            </div>
+                            <div class="left">
+                                <p class="like">
+                                    <span><img src="images/people.png"></span>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <span><img src="images/like.svg"></span>
+                                </p>
+
+                                <p class="like">31 &nbsp; &nbsp; 29</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-image"><img src="images/the lean startup.png"></div>
+                        <div class="card-body">
+                            <p class="status">Available</p>
+                            <p class="title">The Lean Startup</p>
+                            <p class="author">Eric Reis -2005</p>
+                            <p class="genre">Motivational</p>
+                        </div>
+                        <div class="card-action">
+                            <div class="left ratings">
+                                Ratings: 4.0
+                                <p><img src="images/Group 3.png" width="60px" class="stars" /></p>
+                            </div>
+                            <div class="left">
+                                <p class="like">
+                                    <span><img src="images/people.png"></span>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <span><img src="images/like.svg"></span>
+                                </p>
+
+                                <p class="like">31 &nbsp; &nbsp; 29</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card">
+                        <div class="card-image"><img src="images/effective python.png"></div>
+                        <div class="card-body">
+                            <p class="status">Available</p>
+                            <p class="title">The Effective Python</p>
+                            <p class="author">Diomidis Spinellis</p>
+                            <p class="genre">Motivational</p>
+                        </div>
+                        <div class="card-action">
+                            <div class="left ratings">
+                                Ratings: 4.0
+                                <p><img src="images/Group 3.png" width="60px" class="stars" /></p>
+                            </div>
+                            <div class="left">
+                                <p class="like">
+                                    <span><img src="images/people.png"></span>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <span><img src="images/like.svg"></span>
+                                </p>
+
+                                <p class="like">31 &nbsp; &nbsp; 29</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-image"><img src="images/big magic.png"></div>
+                        <div class="card-body">
+                            <p class="status">Available</p>
+                            <p class="title">Big Magic</p>
+                            <p class="author">Elizabeth Gilbert</p>
+                            <p class="genre">Motivational</p>
+                        </div>
+                        <div class="card-action">
+                            <div class="left ratings">
+                                Ratings: 4.0
+                                <p><img src="images/Group 3.png" width="60px" class="stars" /></p>
+                            </div>
+                            <div class="left">
+                                <p class="like">
+                                    <span><img src="images/people.png"></span>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <span><img src="images/like.svg"></span>
+                                </p>
+
+                                <p class="like">31 &nbsp; &nbsp; 29</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-image"><img src="images/effective python.png"></div>
+                        <div class="card-body">
+                            <p class="status">Available</p>
+                            <p class="title">The Effective Python</p>
+                            <p class="author">Diomidis Spinellis</p>
+                            <p class="genre">Motivational</p>
+                        </div>
+                        <div class="card-action">
+                            <div class="left ratings">
+                                Ratings: 4.0
+                                <p><img src="images/Group 3.png" width="60px" class="stars" /></p>
+                            </div>
+                            <div class="left">
+                                <p class="like">
+                                    <span><img src="images/people.png"></span>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <span><img src="images/like.svg"></span>
+                                </p>
+
+                                <p class="like">31 &nbsp; &nbsp; 29</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-image"><img src="images/effective engineer (1).png"></div>
+                        <div class="card-body">
+                            <p class="status ">Available</p>
+                            <p class="title">The Effective Engineer</p>
+                            <p class="author">Edmond Lau -2009</p>
+                            <p class="genre">Motivational</p>
+                        </div>
+                        <div class="card-action">
+                            <div class="left ratings">
+                                Ratings: 4.0
+                                <p><img src="images/Group 3.png" width="60px" class="stars" /></p>
+                            </div>
+                            <div class="left">
+                                <p class="like">
+                                    <span><img src="images/people.png"></span>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <span><img src="images/like.svg"></span>
+                                </p>
+
+                                <p class="like">31 &nbsp; &nbsp; 29</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image"><img src="images/built to last.png"></div>
+                        <div class="card-body">
+                            <p class="status out">Borrowed out</p>
+                            <p class="title">Built To Last</p>
+                            <p class="author">Jim Collins, Jerry I. Porras -2001</p>
+                            <p class="genre">Business, Entrepreneurship</p>
+                        </div>
+                        <div class="card-action">
+                            <div class="left ratings">
+                                Ratings: 4.0
+                                <p><img src="images/Group 3.png" width="60px" class="stars" /></p>
+                            </div>
+                            <div class="left">
+                                <p class="like">
+                                    <span><img src="images/people.png"></span>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <span><img src="images/like.svg"></span>
+                                </p>
+
+                                <p class="like">31 &nbsp; &nbsp; 29</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
                 </div>
             </div>
+            <!--ALL BOOKS SECTION ENDS HERE-->
+
         </aside>
         <!--BOOK LISTING ENDS HERE-->
 
@@ -160,7 +636,10 @@
     <!--All CONTENT BODY ends here-->
 
 
- <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script src="js/flickity.min.js"></script>
+    <script src="js/main.js"></script>
+
+
     <!--Carousel Slider-->
 </body>
 
